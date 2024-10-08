@@ -1,5 +1,5 @@
-import { Column, Container, CriarText, EsqueciText, Row, SubtitleLogin, Title, TitleLogin, Wrapper } from './styles';
-import { MdEmail, MdLock } from 'react-icons/md'
+import { Column, Container, CriarText, LogarText, Row, SubtitleBotton, SubtitleLogin, Title, TitleCadastro, TitleLogin, Wrapper } from './styles';
+import { MdAcUnit, MdAccessible, MdAccountBalance, MdEmail, MdLock, MdPerson } from 'react-icons/md'
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -8,7 +8,7 @@ import { api } from '../../services/api';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
 
     const navigate = useNavigate()
 
@@ -43,18 +43,24 @@ const Login = () => {
             </Column>
             <Column>
                 <Wrapper>
-                <TitleLogin>Faça seu cadastro</TitleLogin>
-                <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+                <TitleCadastro>Comece agora grátis</TitleCadastro>
+                <SubtitleLogin>Crie sua conta e make the change.</SubtitleLogin>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input placeholder="Nome: completo" leftIcon={<MdPerson />} name="nome"  control={control} />
+                    {errors.useForm && <span>E-mail é obrigatório</span>}
                     <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
                     {errors.email && <span>E-mail é obrigatório</span>}
                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
                     {errors.senha && <span>Senha é obrigatório</span>}
-                    <Button title="Entrar" variant="secondary" type="submit"/>
+                    <Button title="Criar minha conta" variant="secondary" type="submit"/>
                 </form>
                 <Row>
-                    <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText>Criar Conta</CriarText>
+                <SubtitleLogin>Ao clicar em "criar minha conta grátis." declaro que aceito as Politicas de Provacidade e os Termos de Uso da DIO.</SubtitleLogin>                
+                </Row>
+                <Row >
+                <div style={{justifyContent: 'flex-start'}}></div>
+                <LogarText>Já tenho conta.</LogarText>
+                    <CriarText>Fazer Login</CriarText>
                 </Row>
                 </Wrapper>
             </Column>
@@ -62,4 +68,4 @@ const Login = () => {
     </>)
 }
 
-export { Login }
+export { Register }

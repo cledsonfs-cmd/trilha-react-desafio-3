@@ -1,11 +1,21 @@
-import React from 'react'
-import logo from '../../assets/logo-dio.png';
+import { BuscarInputContainer, Container, Input, Menu, MenuRight, Row, UserPicture, Wrapper } from './styles';
 
 import { Button } from '../Button';
+import React from 'react'
+import logo from '../../assets/logo-dio.png';
+import { useNavigate } from 'react-router-dom';
 
-import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture} from './styles';
+const Header = ({ autenticado }) => {
+  const navigate = useNavigate();
 
-const Header = ({autenticado}) => {
+  const handleClickSignIn = () => {
+    navigate('/login')
+  }
+
+  const handleClickRegister = () => {
+    navigate('/register')
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -27,8 +37,8 @@ const Header = ({autenticado}) => {
               ) : (
               <>
                 <MenuRight href="/">Home</MenuRight>
-                <Button title="Entrar" />
-                <Button title="Cadastrar" />
+                <Button title="Entrar" onClick={handleClickSignIn}/>
+                <Button title="Cadastrar" onClick={handleClickRegister}/>
               </>)}
           </Row>
       </Container>
